@@ -1,0 +1,4 @@
+infra/keys/*
+**/.terraform
+.terraform*
+terraform*.backup

@@ -1,0 +1,32 @@
+---
+- name: Install docker
+  hosts: all
+  become: true
+  tasks:
+    - name: Add docker GPG key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu jammy stable
+
+    - name: Update and install docker, pip3
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - python3-pip
+        state: present
+        update_cache: true
+
+    - name: Install docker python module
+      ansible.builtin.pip:
+        name: docker
+        state: present
+
+    - name: Set user for docker
+      ansible.builtin.user:
+        name: sennin
+        append: true
+        groups: docker

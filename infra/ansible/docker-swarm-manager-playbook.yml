@@ -1,0 +1,9 @@
+---
+- name: Docker swarm manager config
+  hosts: all
+  become: true
+  tasks:
+
+    - name: Init docker swarm cluster
+      community.docker.docker_swarm:
+        state: present
