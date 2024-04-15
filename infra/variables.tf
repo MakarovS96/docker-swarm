@@ -16,10 +16,10 @@ variable "zonea" {
   default = "ru-central1-a"
 }
 
-variable "ssh_key_private" {
+variable "yandex_token_file" {
   type = string
-  description = "Private key"
-  default = "keys/id_ed25519"
+  description = "path to file with your yandex cloud token"
+  default = "keys/token"
 }
 
 variable "ssh_user" {

@@ -2,6 +2,7 @@
 - name: Docker swarm manager config
   hosts: all
   become: true
+  gather_facts: false
   tasks:
 
     - name: Init docker swarm cluster

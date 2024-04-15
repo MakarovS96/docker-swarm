@@ -9,3 +9,8 @@ locals {
     user_groups = "sudoers"
   })
 }
+
+data "local_file" "swarm_token" {
+  depends_on = [ null_resource.docker-swarm-worker-get-token ]
+  filename = "keys/swarm_token"
+}

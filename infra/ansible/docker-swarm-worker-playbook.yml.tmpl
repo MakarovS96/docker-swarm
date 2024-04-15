@@ -1,0 +1,12 @@
+---
+- name: Join worker to swarm
+  hosts: all
+  become: true
+  gather_facts: false
+  tasks:
+    - name: Join worker to swarm cluster
+      community.docker.docker_swarm:
+        state: join
+        join_token: "${swarm_token}"
+        remote_addrs:
+          - "${address}:2377"
