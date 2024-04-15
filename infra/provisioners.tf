@@ -39,7 +39,7 @@ resource "null_resource" "docker-swarm-worker-get-token" {
 resource "local_file" "docker-swarm-worker-ansible" {
   depends_on = [ null_resource.docker-swarm-worker-get-token, data.local_file.swarm_token ]
   filename = "ansible/docker-swarm-worker-playbook.yml"
-  content = templatefile("ansible/docker-swarm-worker-playbook.yml.tmpl", {"address": yandex_compute_instance.manager.network_interface[0].nat_ip_address, "swarm_token": trimspace(data.local_file.swarm_token.content)})
+  content = templatefile("ansible/docker-swarm-worker-playbook.yml.tmpl", {"address": yandex_compute_instance.manager.network_interface[0].ip_address, "swarm_token": trimspace(data.local_file.swarm_token.content)})
 }
 
 resource "null_resource" "docker-swarm-worker1-join" {
